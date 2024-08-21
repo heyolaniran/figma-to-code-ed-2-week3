@@ -34,7 +34,7 @@ export default function SideBar() {
 
                         <div className="mt-2">
                             {navLinks.map((item, index) => (
-                                <Link href={item.href} key={index} className={`flex gap-3 text-sm items-center py-2 ${path == item.href ? 'text-white bg-blue-600 rounded-lg px-2' : ''}`}> <Image src={item.icon} width={20} height={20} alt="" className={`${path == item.href ? 'text-white': ''}`} />  {item.name}</Link>
+                                <Link href={item.href} key={index} className={`flex gap-3 text-sm items-center py-2 ${path == item.href ? 'text-white bg-blue-600 rounded-lg px-1' : ''}`}> <Image src={item.icon} width={20} height={20} alt="" className={`${path == item.href ? 'text-white': ''}`} />  {item.name}</Link>
                             ))}
                         </div>
                     </div>
