@@ -1,4 +1,5 @@
-import { MoveDown, MoveUp } from "lucide-react";
+import { ChevronRight, MoveDown, MoveUp } from "lucide-react";
+import ResumeTrendingSkeleton from "./ui/ResumeTrendingSkeleton";
 
 
 export default function Dashboard () {
@@ -18,7 +19,7 @@ export default function Dashboard () {
                         </div>
                     </div>
 
-                    <div className=" mt-4 flex justify-between gap-2 items-center">
+                    <div className=" mt-4 flex justify-between sticky top-0 gap-2 items-center">
                         <button className="rounded-lg px-2 font-bold text-md w-full py-1 bg-blue-400/10 text-blue-400 flex justify-center items-center gap-1">
                             <MoveUp className="w-4 h-4"/> Deposit
                         </button>
@@ -28,7 +29,17 @@ export default function Dashboard () {
                     </div>
                 </div>
                 <div className="border rounded-xl lg:col-span-3 p-4">
-                    lorem
+                    <div className="flex justify-between items-center">
+                        <h1 className="text-lg  font-bold">Trending</h1>
+                        <span className="flex  items-center gap-2 text-sm"> view more <ChevronRight className="w-4 h-4" /> </span>
+                    </div>
+
+                    <div className="mt-2 grid grid-cols-1 xl:grid-cols-4 md:grid-cols-2 gap-2">
+                        <ResumeTrendingSkeleton />
+                        <ResumeTrendingSkeleton />
+                        <ResumeTrendingSkeleton />
+                        <ResumeTrendingSkeleton />
+                    </div>
                 </div>
             </div>
 
