@@ -4,6 +4,7 @@ import { useSelectedLayoutSegment } from "next/navigation";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
+import HeaderMobile from "./HeaderMobile";
 export default function TopNavBar() {
     const segment = useSelectedLayoutSegment() ?? "Dashboard"
 
@@ -14,7 +15,9 @@ export default function TopNavBar() {
             `sticky top-0 inset-x-0 z-30 w-full transition-all px-8 border-b md:block`
         )}>
             <div className="flex py-4 items-center justify-between">
+                
                 <div className="flex gap-3 items-center">
+                    <HeaderMobile />
                     <div className="block">
                         <h1 className="text-md font-bold">{segment}</h1>
                         <span className="text-sm">Welcome Back , John Doe !</span>
@@ -28,8 +31,14 @@ export default function TopNavBar() {
                 </div>
 
                 <div className="p-2  flex justify-end border rounded-lg">
-                   <Sun className={` ${light ?  'hidden' : ''}  w-4  h-4 `} onClick={() => setTheme("light")} />
-                   <Moon className={` ${light ? '' : 'hidden'} w-4 h-4 `} onClick={() => setTheme("dark")} />
+                    {light ? (
+                        <Moon className={`w-4 h-4 `} onClick={() => setTheme("dark")} />
+                    ) : (
+                         <Sun className={`w-4  h-4 `} onClick={() => setTheme("light")} />
+                    )
+                    }
+                  
+                   
                 </div>
             </div>
         </div>

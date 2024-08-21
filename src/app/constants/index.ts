@@ -11,11 +11,7 @@ export const navLinks : navLinksType[] = [
         href: '/news', 
         icon: '/icons/news.svg'
     },
-    {
-        name: 'News',
-        href: '/news', 
-        icon: '/icons/news.svg'
-    },
+   
     {
         name: 'Activities',
         href: '/Activities', 
