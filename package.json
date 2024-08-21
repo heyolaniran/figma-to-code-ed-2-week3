@@ -6,13 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint", 
+    "format": "prettier --write \"**/*.{tsx, ts , js ,jsx, js, md}\""
   },
   "dependencies": {
     "clsx": "^2.1.1",
     "lucide-react": "^0.429.0",
     "next": "14.2.5",
     "next-themes": "^0.3.0",
+    "prettier": "^3.3.3",
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.5.2"

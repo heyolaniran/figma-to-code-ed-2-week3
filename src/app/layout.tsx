@@ -20,22 +20,25 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={``}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <div className="flex">
             <div className="lg:block hidden">
               <SideBar />
             </div>
-            
+
             <main className="flex-1">
-                <TopNavBar />
-                <div className="flex flex-col  sm:border-r sm:border-slate-50 min-h-screen">
+              <TopNavBar />
+              <div className="flex flex-col  sm:border-r sm:border-slate-50 min-h-screen">
                 {children}
-                </div>
+              </div>
             </main>
           </div>
         </ThemeProvider>
-       
-        
       </body>
     </html>
   );
