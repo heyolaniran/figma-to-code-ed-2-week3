@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import SideBar from "@/components/ui/SideBar";
 import TopNavBar from "@/components/ui/TopNavBar";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,15 +20,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={``}>
-        <div className="flex">
-          <SideBar />
-           <main className="flex-1">
-              <TopNavBar />
-              <div className="flex flex-col  sm:border-r sm:border-slate-50 min-h-screen">
-               {children}
-              </div>
-           </main>
-        </div>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange >
+          <div className="flex">
+            <div className="lg:block hidden">
+              <SideBar />
+            </div>
+            
+            <main className="flex-1">
+                <TopNavBar />
+                <div className="flex flex-col  sm:border-r sm:border-slate-50 min-h-screen">
+                {children}
+                </div>
+            </main>
+          </div>
+        </ThemeProvider>
+       
         
       </body>
     </html>
