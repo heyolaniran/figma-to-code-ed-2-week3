@@ -5,3 +5,9 @@ export type navLinksType = {
   href: string;
   icon: string;
 };
+
+
+export type coinCategoryType = {
+  category_id : string
+  name: string
+}
