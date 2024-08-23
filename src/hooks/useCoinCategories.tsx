@@ -11,10 +11,10 @@ export function useCoinCategories() {
 
   useEffect(() => {
     axios
-      .get("https://api.coingecko.com/api/v3/coins/categories/list", {
+      .get(`${process.env.NEXT_PUBLIC_COINGECKO_API_BASE_URL}/coins/categories/list`, {
         method: "GET",
         headers: {
-          "x-cg-demo-api-key": "CG-mNvAm5yBArmHYDBbywqkzwvr",
+          "x-cg-demo-api-key": `${process.env.NEXT_PUBLIC_COING}`,
         },
       })
       .then((response) => {

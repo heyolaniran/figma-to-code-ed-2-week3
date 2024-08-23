@@ -18,9 +18,13 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useCoinCategories } from "@/hooks/useCoinCategories";
+import { useCurrencies } from "@/hooks/useCurrencies";
+import Image from "next/image";
 
 export default function CryptoTable() {
   const { categories, isLoading } = useCoinCategories();
+
+  const {currencies, currencyLoading} = useCurrencies() ; 
 
   return (
     <div className="p-2">
@@ -76,31 +80,49 @@ export default function CryptoTable() {
 
         <Table className="mb-4">
           <TableCaption>A list of your recent invoices.</TableCaption>
-          <TableHeader className="bg-slate-400/10 text-black">
-            <TableRow>
+          <TableHeader className="bg-slate-400/10 text-black ">
+            <TableRow className="">
               <TableHead className="w-6"></TableHead>
-              <TableHead className="">Coins</TableHead>
+              <TableHead className="w-6">#</TableHead>
+              <TableHead className="lg:w-10">Coins</TableHead>
               <TableHead>Price</TableHead>
               <TableHead className="w-8">24H</TableHead>
               <TableHead>24H Volume</TableHead>
               <TableHead>MarketCap</TableHead>
-              <TableHead className="text-right">Last 7 days </TableHead>
+              <TableHead className="text-right">Last 7 days</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            <TableRow>
-              <TableCell>
-                {" "}
-                <Star className="w-4 h-4" />{" "}
-              </TableCell>
-              <TableCell className="font-medium">INV001</TableCell>
-              <TableCell>Paid</TableCell>
-              <TableCell>Paid</TableCell>
-              <TableCell>Paid</TableCell>
+            
+            { !currencyLoading ? currencies.map((currency, index) => (
+                <TableRow key={index} className="text-sm font-medium">
+                    <TableCell>
+                        {" "}
+                        <Star className="w-4 h-4" />{" "}
+                    </TableCell>
+                    <TableCell className="font-medium">{currency.market_cap_rank}</TableCell>
+                    <TableCell className="flex gap-1 ">
+                        {currency.name + "-"+ currency.symbol}
+                    </TableCell>
+                    <TableCell> ${currency.current_price}</TableCell>
+                    <TableCell>
+                        <div className={`px-2 py-0.5 rounded-xl text-center text-xs ${currency.price_change_percentage_24h > 0 ? 'bg-green-400/20 text-green-600' : 'bg-red-400/20 text-red-600'}` }>
+                            {currency.price_change_percentage_24h.toFixed(2)}
+                        </div>
+                    </TableCell>
+                    <TableCell>
+                        {currency.market_cap_change_24h.toFixed(2)}
+                    </TableCell>
 
-              <TableCell>Credit Card</TableCell>
-              <TableCell className="text-right">$250.00</TableCell>
-            </TableRow>
+                    <TableCell>
+                        {currency.market_cap.toFixed(2)}
+                    </TableCell>
+                    <TableCell className="text-right">$250.00</TableCell>
+                </TableRow>
+            )) : (
+                <></>
+            )}
+            
           </TableBody>
         </Table>
       </div>
