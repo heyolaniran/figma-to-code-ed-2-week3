@@ -11,12 +11,15 @@ export function useCoinCategories() {
 
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_PUBLIC_COINGECKO_API_BASE_URL}/coins/categories/list`, {
-        method: "GET",
-        headers: {
-          "x-cg-demo-api-key": `${process.env.NEXT_PUBLIC_COING}`,
+      .get(
+        `${process.env.NEXT_PUBLIC_COINGECKO_API_BASE_URL}/coins/categories/list`,
+        {
+          method: "GET",
+          headers: {
+            "x-cg-demo-api-key": `${process.env.NEXT_PUBLIC_COING}`,
+          },
         },
-      })
+      )
       .then((response) => {
         setCategories(response.data.slice(0, 10));
         setIsLoading(false);

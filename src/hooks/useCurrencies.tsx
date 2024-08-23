@@ -1,44 +1,39 @@
-"use client"
+"use client";
 
 import { currencyType } from "@/types";
 import axios from "axios";
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
+export function useCurrencies(category: string = "") {
+  const [currencyLoading, setIsLoading] = useState<boolean>(true);
 
+  const [currencies, setCurrencies] = useState<currencyType[]>([]);
 
-export  function useCurrencies( category : string = '') {
+  const BASE_URL =
+    process.env.NEXT_PUBLIC_COINGECKO_API_BASE_URL +
+    `/coins/markets/?vs_currency=USD`;
+  const URL = category === "" ? BASE_URL : BASE_URL + `?category=${category}`;
 
-    const [currencyLoading, setIsLoading] = useState<boolean>(true) ; 
+  console.log(URL);
 
-    const [currencies , setCurrencies] = useState<currencyType[]>([]) ; 
+  useEffect(() => {
+    axios
+      .get(URL, {
+        method: "GET",
+        headers: {
+          "x-cg-demo-api-key": `${process.env.NEXT_PUBLIC_COINGECKO_API_KEY}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
 
-    const BASE_URL = process.env.NEXT_PUBLIC_COINGECKO_API_BASE_URL+`/coins/markets/?vs_currency=USD` ; 
-    const URL = category === '' ? BASE_URL : BASE_URL+`?category=${category}`
-    
-    console.log(URL)
+        setCurrencies(response.data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }, [category]);
 
-    useEffect(() => {
-
-        axios.get(URL , {
-            method: "GET", 
-            headers : {
-                "x-cg-demo-api-key": `${process.env.NEXT_PUBLIC_COINGECKO_API_KEY}`,
-            }
-        }).then((response) => {
-
-            console.log(response.data)
-
-            setCurrencies(response.data)
-            setIsLoading(false); 
-        }).catch((error) => {
-
-            console.log(error.message)
-        })
-      
-
-
-    }, [category])
-
-
-    return {currencies, currencyLoading} ; 
+  return { currencies, currencyLoading };
 }

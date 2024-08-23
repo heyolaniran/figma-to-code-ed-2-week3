@@ -24,7 +24,7 @@ import Image from "next/image";
 export default function CryptoTable() {
   const { categories, isLoading } = useCoinCategories();
 
-  const {currencies, currencyLoading} = useCurrencies() ; 
+  const { currencies, currencyLoading } = useCurrencies();
 
   return (
     <div className="p-2">
@@ -93,36 +93,38 @@ export default function CryptoTable() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            
-            { !currencyLoading ? currencies.map((currency, index) => (
+            {!currencyLoading ? (
+              currencies.map((currency, index) => (
                 <TableRow key={index} className="text-sm font-medium">
-                    <TableCell>
-                        {" "}
-                        <Star className="w-4 h-4" />{" "}
-                    </TableCell>
-                    <TableCell className="font-medium">{currency.market_cap_rank}</TableCell>
-                    <TableCell className="flex gap-1 ">
-                        {currency.name + "-"+ currency.symbol}
-                    </TableCell>
-                    <TableCell> ${currency.current_price}</TableCell>
-                    <TableCell>
-                        <div className={`px-2 py-0.5 rounded-xl text-center text-xs ${currency.price_change_percentage_24h > 0 ? 'bg-green-400/20 text-green-600' : 'bg-red-400/20 text-red-600'}` }>
-                            {currency.price_change_percentage_24h.toFixed(2)}
-                        </div>
-                    </TableCell>
-                    <TableCell>
-                        {currency.market_cap_change_24h.toFixed(2)}
-                    </TableCell>
+                  <TableCell>
+                    {" "}
+                    <Star className="w-4 h-4" />{" "}
+                  </TableCell>
+                  <TableCell className="font-medium">
+                    {currency.market_cap_rank}
+                  </TableCell>
+                  <TableCell className="flex gap-1 ">
+                    {currency.name + "-" + currency.symbol}
+                  </TableCell>
+                  <TableCell> ${currency.current_price}</TableCell>
+                  <TableCell>
+                    <div
+                      className={`px-2 py-0.5 rounded-xl text-center text-xs ${currency.price_change_percentage_24h > 0 ? "bg-green-400/20 text-green-600" : "bg-red-400/20 text-red-600"}`}
+                    >
+                      {currency.price_change_percentage_24h.toFixed(2)}
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    {currency.market_cap_change_24h.toFixed(2)}
+                  </TableCell>
 
-                    <TableCell>
-                        {currency.market_cap.toFixed(2)}
-                    </TableCell>
-                    <TableCell className="text-right">$250.00</TableCell>
+                  <TableCell>{currency.market_cap.toFixed(2)}</TableCell>
+                  <TableCell className="text-right">$250.00</TableCell>
                 </TableRow>
-            )) : (
-                <></>
+              ))
+            ) : (
+              <></>
             )}
-            
           </TableBody>
         </Table>
       </div>

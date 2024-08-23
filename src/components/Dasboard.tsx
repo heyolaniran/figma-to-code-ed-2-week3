@@ -5,8 +5,8 @@ import CryptoTable from "./ui/CryptoTable";
 export default function Dashboard() {
   return (
     <div className="p-4">
-      <div className="grid lg:grid-cols-4 grid-cols-1 md:grid-cols-1 gap-3">
-        <div className="p-4 rounded-xl border lg:col-span-1">
+      <div className="grid xl:grid-cols-4 grid-cols-1 md:grid-cols-1 gap-3">
+        <div className="p-4 rounded-xl border md:col-span-1">
           <h1 className="text-md font-bold">Balance</h1>
           <div className="flex justify-between items-center gap-4">
             <span className="mt-2 text-xl sm:text-lg font-bold leading-3">
