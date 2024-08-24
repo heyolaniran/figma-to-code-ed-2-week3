@@ -30,10 +30,14 @@ export type currencyType = {
 
 
 export type HistoryChartProps = {
-
-  symbol : string , 
+  id: string 
   currency: string, 
   days?: number,
   price_change: number 
 
+}
+
+export type PriceProps = {
+
+  data : number
 }

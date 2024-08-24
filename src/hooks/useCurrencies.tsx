@@ -14,7 +14,6 @@ export function useCurrencies(category: string = "") {
     `/coins/markets/?vs_currency=USD`;
   const URL = category === "" ? BASE_URL : BASE_URL + `?category=${category}`;
 
-  console.log(URL);
 
   useEffect(() => {
     axios

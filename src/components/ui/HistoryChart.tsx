@@ -4,12 +4,12 @@ import { Area, AreaChart, CartesianGrid} from "recharts"
 
 
 import {
-  ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
 import { HistoryChartProps } from "@/types"
+import { useHistorycalData } from "@/hooks/useHistorycalData"
 const chartData = [
   { data: 186 },
   { data: 305 },
@@ -21,12 +21,12 @@ const chartData = [
 
 
 
-  const chartConfig = (color:  string) => {
+  const chartConfig = (color:  string , token : string) => {
 
      
    return { 
     data: {
-      label: "Desktop",
+      label: `${token}`,
       color: `hsl(var(${color}))`,
     },
    }
@@ -35,14 +35,17 @@ const chartData = [
 
 export function HistoryChart({item} : {item : HistoryChartProps}) {
 
+
+  const {values} = useHistorycalData(item.id) ; 
+
   const color = item.price_change >= 0 ? '--chart-green-1' : '--chart-red-1' ; 
   
   return (
     
-        <ChartContainer config={chartConfig(color)} className="w-full h-16">
+        <ChartContainer config={chartConfig(color, item.id)} className="w-full h-16">
           <AreaChart
             accessibilityLayer
-            data={chartData}
+            data={values}
             margin={{
               left: 12,
               right: 12,

@@ -125,7 +125,7 @@ export default function CryptoTable() {
 
                   <TableCell>{currency.market_cap.toFixed(2)}</TableCell>
                   <TableCell className="text-center flex justify-center items-center">
-                    <HistoryChart item={{symbol : currency.symbol , currency : "usd", price_change : currency.price_change_percentage_24h }} />
+                    <HistoryChart item={{id : currency.id , currency : "usd", price_change : currency.price_change_percentage_24h }} />
                   </TableCell>
                 </TableRow>
               ))
