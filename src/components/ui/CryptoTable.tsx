@@ -84,7 +84,7 @@ export default function CryptoTable() {
             <TableRow className="">
               <TableHead className="w-6"></TableHead>
               <TableHead className="w-6">#</TableHead>
-              <TableHead className="lg:w-10">Coins</TableHead>
+              <TableHead className="">Coins</TableHead>
               <TableHead>Price</TableHead>
               <TableHead className="w-8">24H</TableHead>
               <TableHead>24H Volume</TableHead>
@@ -103,8 +103,8 @@ export default function CryptoTable() {
                   <TableCell className="font-medium">
                     {currency.market_cap_rank}
                   </TableCell>
-                  <TableCell className="flex gap-1 ">
-                    {currency.name + "-" + currency.symbol}
+                  <TableCell className="flex gap-1 items-center ">
+                    <Image src={currency.image} width={24} height={24} className="rounded-full"  alt="a"/> {currency.symbol.toUpperCase()}
                   </TableCell>
                   <TableCell> ${currency.current_price}</TableCell>
                   <TableCell>
