@@ -16,7 +16,7 @@ export function useCoinCategories() {
         {
           method: "GET",
           headers: {
-            "x-cg-demo-api-key": `${process.env.NEXT_PUBLIC_COING}`,
+            "x-cg-demo-api-key": process.env.NEXT_PUBLIC_COINGECKO_API_KEY,
           },
         },
       )

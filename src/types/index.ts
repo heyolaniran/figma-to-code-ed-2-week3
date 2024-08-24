@@ -27,3 +27,13 @@ export type currencyType = {
     market_cap_change_24h: number
 
 }
+
+
+export type HistoryChartProps = {
+
+  symbol : string , 
+  currency: string, 
+  days?: number,
+  price_change: number 
+
+}

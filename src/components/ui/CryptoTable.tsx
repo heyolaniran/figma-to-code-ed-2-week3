@@ -20,6 +20,7 @@ import {
 import { useCoinCategories } from "@/hooks/useCoinCategories";
 import { useCurrencies } from "@/hooks/useCurrencies";
 import Image from "next/image";
+import { HistoryChart } from "./HistoryChart";
 
 export default function CryptoTable() {
   const { categories, isLoading } = useCoinCategories();
@@ -42,7 +43,7 @@ export default function CryptoTable() {
 
         <div className="flex justify-end items-center">
           <Select>
-            <SelectTrigger className="w-full md:w-1/4">
+            <SelectTrigger className="w-full lg:w-1/2 px-2">
               <SelectValue placeholder="Catégories" />
             </SelectTrigger>
             <SelectContent>
@@ -103,8 +104,12 @@ export default function CryptoTable() {
                   <TableCell className="font-medium">
                     {currency.market_cap_rank}
                   </TableCell>
-                  <TableCell className="flex gap-1 items-center ">
-                    <Image src={currency.image} width={24} height={24} className="rounded-full"  alt="a"/> {currency.symbol.toUpperCase()}
+                  <TableCell className="">
+                    <div className="flex items-center gap-1">
+                    <Image src={currency.image} width={24} height={24} className="rounded-full"  alt="a"/> 
+                    {currency.symbol.toUpperCase()}
+                    </div>
+                    
                   </TableCell>
                   <TableCell> ${currency.current_price}</TableCell>
                   <TableCell>
@@ -119,7 +124,9 @@ export default function CryptoTable() {
                   </TableCell>
 
                   <TableCell>{currency.market_cap.toFixed(2)}</TableCell>
-                  <TableCell className="text-right">$250.00</TableCell>
+                  <TableCell className="text-center flex justify-center items-center">
+                    <HistoryChart item={{symbol : currency.symbol , currency : "usd", price_change : currency.price_change_percentage_24h }} />
+                  </TableCell>
                 </TableRow>
               ))
             ) : (
