@@ -1,6 +1,5 @@
 "use client";
 import { navLinks } from "@/app/constants";
-import cn from "@/utils/cn";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
