@@ -36,25 +36,24 @@ export default function CryptoTable() {
   const [category, setSelectedCategory] = useState<string>("");
   const { currencies, currencyLoading } = useCurrencies(category, currentPage);
 
-  const [coins, setCoins] = useState<currencyType[]>([]) ; 
+  const [coins, setCoins] = useState<currencyType[]>([]);
 
   useEffect(() => {
-     setCoins(currencies) ; 
-  }, [currencies]); 
-  
+    setCoins(currencies);
+  }, [currencies]);
 
-  
-  const [search, setSearch] = useState<string>(""); 
+  const [search, setSearch] = useState<string>("");
 
   useEffect(() => {
-    if(search === "") {
-      setCoins(currencies); 
-    }else{
-      const result = coins.filter((item) => item.symbol.toLowerCase().includes(search))
-      setCoins(result); 
+    if (search === "") {
+      setCoins(currencies);
+    } else {
+      const result = coins.filter((item) =>
+        item.symbol.toLowerCase().includes(search),
+      );
+      setCoins(result);
     }
-  
-  }, [search])
+  }, [search]);
 
   const pages: number[] = [1, 2, 3, 4];
 
@@ -71,7 +70,6 @@ export default function CryptoTable() {
   };
 
   const handleStep = (step: number) => {
-    
     setCurrentPage(step);
   };
   return (
@@ -86,7 +84,7 @@ export default function CryptoTable() {
             className="block md:w-3/4 w-full outline-0 placeholder:text-sm placeholder:text-slate-400 px-4 ps-10 py-2 text-sm  rounded-lg border border-gray-200 "
             placeholder="Search Cryptos..."
             value={search}
-            onChange={(e)=> setSearch(e.target.value)}
+            onChange={(e) => setSearch(e.target.value)}
           />
         </div>
 

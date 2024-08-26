@@ -23,7 +23,6 @@ export function useCurrencies(category: string = "", page: number = 1) {
         },
       })
       .then((response) => {
-      
         setCurrencies(response.data);
         setIsLoading(false);
       })
