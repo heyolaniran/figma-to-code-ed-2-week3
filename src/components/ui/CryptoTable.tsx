@@ -17,7 +17,6 @@ import {
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -127,7 +126,7 @@ export default function CryptoTable() {
         </div>
 
         <Table className="mb-4">
-          <TableHeader className="bg-slate-400/10 text-black ">
+          <TableHeader className="bg-slate-400/10   ">
             <TableRow className="">
               <TableHead className="w-6"></TableHead>
               <TableHead className="w-6">#</TableHead>

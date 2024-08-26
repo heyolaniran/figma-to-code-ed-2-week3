@@ -6,6 +6,15 @@ import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 import HeaderMobile from "./HeaderMobile";
 import useScroll from "@/hooks/useScroll";
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 export default function TopNavBar() {
   const segment = useSelectedLayoutSegment() ?? "Dashboard";
 
@@ -37,12 +46,24 @@ export default function TopNavBar() {
           </div>
         </div>
 
-        <div className="p-2  flex justify-end border rounded-lg">
-          {light ? (
-            <Moon className={`w-4 h-4 `} onClick={() => setTheme("dark")} />
-          ) : (
-            <Sun className={`w-4  h-4 `} onClick={() => setTheme("light")} />
-          )}
+        <div className="flex justify-end items-center gap-1">
+          <div className="p-2">
+            <Select>
+              <SelectTrigger className="h-9">
+                <SelectValue placeholder="USD" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="USD">USD</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="p-2  flex  border rounded-lg">
+            {light ? (
+              <Moon className={`w-4 h-4 `} onClick={() => setTheme("dark")} />
+            ) : (
+              <Sun className={`w-4  h-4 `} onClick={() => setTheme("light")} />
+            )}
+          </div>
         </div>
       </div>
     </div>

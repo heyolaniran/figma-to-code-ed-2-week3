@@ -27,7 +27,7 @@ export function HistoryChart({ item }: { item: HistoryChartProps }) {
   return (
     <ChartContainer
       config={chartConfig(color, item.id)}
-      className="w-full h-16"
+      className="w-1/2 h-16 mt-4"
     >
       <AreaChart
         accessibilityLayer
