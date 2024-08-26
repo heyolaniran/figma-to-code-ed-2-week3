@@ -1,5 +1,11 @@
 "use client";
-import { MoreVertical, Search, Star } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  MoreVertical,
+  Search,
+  Star,
+} from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -21,12 +27,31 @@ import { useCoinCategories } from "@/hooks/useCoinCategories";
 import { useCurrencies } from "@/hooks/useCurrencies";
 import Image from "next/image";
 import { HistoryChart } from "./HistoryChart";
+import { useState } from "react";
 
 export default function CryptoTable() {
+  const [currentPage, setCurrentPage] = useState<number>(2);
   const { categories, isLoading } = useCoinCategories();
+  const [category, setSelectedCategory] = useState<string>("");
+  const { currencies, currencyLoading } = useCurrencies(category, currentPage);
 
-  const { currencies, currencyLoading } = useCurrencies();
+  const pages: number[] = [1, 2, 3, 4];
 
+  const handlePrev = () => {
+    if (currentPage == 1) return;
+
+    setCurrentPage((prev) => prev - 1);
+  };
+
+  const handleNext = () => {
+    if (currentPage == 4) return;
+
+    setCurrentPage((prev) => prev + 1);
+  };
+
+  const handleStep = (step: number) => {
+    setCurrentPage(step);
+  };
   return (
     <div className="p-2">
       <div className="mb-4 grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -49,7 +74,7 @@ export default function CryptoTable() {
             <SelectContent>
               {isLoading && (
                 <>
-                  {categories.forEach(() => {
+                  {currencies.forEach(() => {
                     return (
                       <div className="h-2.5 bg-gray-200 rounded-full text-center dark:bg-gray-700 w-8  "></div>
                     );
@@ -80,7 +105,6 @@ export default function CryptoTable() {
         </div>
 
         <Table className="mb-4">
-          <TableCaption>A list of your recent invoices.</TableCaption>
           <TableHeader className="bg-slate-400/10 text-black ">
             <TableRow className="">
               <TableHead className="w-6"></TableHead>
@@ -106,10 +130,15 @@ export default function CryptoTable() {
                   </TableCell>
                   <TableCell className="">
                     <div className="flex items-center gap-1">
-                    <Image src={currency.image} width={24} height={24} className="rounded-full"  alt="a"/> 
-                    {currency.symbol.toUpperCase()}
+                      <Image
+                        src={currency.image}
+                        width={24}
+                        height={24}
+                        className="rounded-full"
+                        alt="a"
+                      />
+                      {currency.symbol.toUpperCase()}
                     </div>
-                    
                   </TableCell>
                   <TableCell> ${currency.current_price}</TableCell>
                   <TableCell>
@@ -125,7 +154,13 @@ export default function CryptoTable() {
 
                   <TableCell>{currency.market_cap.toFixed(2)}</TableCell>
                   <TableCell className="text-center flex justify-center items-center">
-                    <HistoryChart item={{id : currency.id , currency : "usd", price_change : currency.price_change_percentage_24h }} />
+                    <HistoryChart
+                      item={{
+                        id: currency.id,
+                        currency: "usd",
+                        price_change: currency.price_change_percentage_24h,
+                      }}
+                    />
                   </TableCell>
                 </TableRow>
               ))
@@ -134,6 +169,32 @@ export default function CryptoTable() {
             )}
           </TableBody>
         </Table>
+
+        <div className="flex justify-end gap-1 mt-2 items-center p-2">
+          <button
+            className="bg-slate-400/20 text-center px-2 py-1 rounded-lg"
+            onClick={() => handlePrev()}
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+
+          {pages.map((page, index) => (
+            <button
+              className={` ${currentPage === page ? "bg-blue-400 text-white" : "bg-slate-400/20"} text-center px-2 py-1 rounded-lg`}
+              key={index}
+              onClick={() => handleStep(page)}
+            >
+              {page}
+            </button>
+          ))}
+
+          <button
+            className="bg-slate-400/20 text-center px-2 py-1 rounded-lg"
+            onClick={() => handleNext()}
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
       </div>
     </div>
   );
