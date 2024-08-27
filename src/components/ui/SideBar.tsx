@@ -8,8 +8,8 @@ export default function SideBar() {
   const path = usePathname();
 
   return (
-    <div className="">
-      <div className="flex min-h-screen  border-r px-4">
+    <div className={""}>
+      <div className="md:flex min-h-screen border-r px-4">
         <div className="flex flex-col  px-4 justify-between">
           <div className="">
             <div className=" py-2 px-8 mt-2 bg-blue-600/10 rounded-lg border border-slate-200">

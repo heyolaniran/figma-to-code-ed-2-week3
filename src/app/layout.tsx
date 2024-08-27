@@ -27,7 +27,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="flex">
-            <div className="lg:block hidden">
+            <div className="lg:block hidden min-h-screen sticky">
               <SideBar />
             </div>
 

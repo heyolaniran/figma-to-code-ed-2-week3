@@ -5,15 +5,29 @@ import Image from "next/image";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 import HeaderMobile from "./HeaderMobile";
+import useScroll from "@/hooks/useScroll";
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 export default function TopNavBar() {
   const segment = useSelectedLayoutSegment() ?? "Dashboard";
 
   const { theme, setTheme } = useTheme();
   const light = theme == "light";
+
+  const scroll = useScroll(0);
+
   return (
     <div
       className={cn(
-        `sticky top-0 inset-x-0 z-30 w-full transition-all px-8 border-b md:block`,
+        ` top-0 inset-x-0 z-30 w-full transition-all backdrop-blur-lg  px-8 border-b md:block`,
+        { "bg-slate-200/50 dark:bg-black/30 backdrop-blur-lg": scroll },
       )}
     >
       <div className="flex py-4 items-center justify-between">
@@ -32,12 +46,24 @@ export default function TopNavBar() {
           </div>
         </div>
 
-        <div className="p-2  flex justify-end border rounded-lg">
-          {light ? (
-            <Moon className={`w-4 h-4 `} onClick={() => setTheme("dark")} />
-          ) : (
-            <Sun className={`w-4  h-4 `} onClick={() => setTheme("light")} />
-          )}
+        <div className="flex justify-end items-center gap-1">
+          <div className="p-2">
+            <Select>
+              <SelectTrigger className="h-9">
+                <SelectValue placeholder="USD" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="USD">USD</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="p-2  flex  border rounded-lg">
+            {light ? (
+              <Moon className={`w-4 h-4 `} onClick={() => setTheme("dark")} />
+            ) : (
+              <Sun className={`w-4  h-4 `} onClick={() => setTheme("light")} />
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -6,10 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint", 
+    "lint": "next lint",
     "format": "prettier --write \"**/*.{tsx, ts , js ,jsx, js, md}\""
   },
   "dependencies": {
+    "@radix-ui/react-select": "^2.1.1",
+    "axios": "^1.7.5",
+    "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.429.0",
     "next": "14.2.5",
@@ -17,7 +20,9 @@
     "prettier": "^3.3.3",
     "react": "^18",
     "react-dom": "^18",
-    "tailwind-merge": "^2.5.2"
+    "recharts": "^2.12.7",
+    "tailwind-merge": "^2.5.2",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/node": "^20",
