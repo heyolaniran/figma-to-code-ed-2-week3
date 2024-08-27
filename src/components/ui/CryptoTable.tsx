@@ -57,13 +57,13 @@ export default function CryptoTable() {
   const pages: number[] = [1, 2, 3, 4];
 
   const handlePrev = () => {
-    if (currentPage == 1) return;
+    if (currentPage == 1) return 1;
 
     setCurrentPage((prev) => prev - 1);
   };
 
   const handleNext = () => {
-    if (currentPage == 4) return;
+    if (currentPage == 4) return 4;
 
     setCurrentPage((prev) => prev + 1);
   };
