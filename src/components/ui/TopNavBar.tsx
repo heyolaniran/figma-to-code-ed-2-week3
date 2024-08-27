@@ -26,7 +26,7 @@ export default function TopNavBar() {
   return (
     <div
       className={cn(
-        `sticky top-0 inset-x-0 z-30 w-full transition-all backdrop-blur-lg  px-8 border-b md:block`,
+        ` top-0 inset-x-0 z-30 w-full transition-all backdrop-blur-lg  px-8 border-b md:block`,
         { "bg-slate-200/50 dark:bg-black/30 backdrop-blur-lg": scroll },
       )}
     >

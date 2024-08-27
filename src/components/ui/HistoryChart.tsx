@@ -19,7 +19,17 @@ const chartConfig = (color: string, token: string) => {
   };
 };
 
-export function HistoryChart({ item }: { item: HistoryChartProps }) {
+export function HistoryChart({
+  item,
+  vertical = false,
+  horizontal = false,
+  className = "w-1/2 h-16",
+}: {
+  item: HistoryChartProps;
+  vertical?: boolean;
+  horizontal?: boolean;
+  className?: string;
+}) {
   const { values } = useHistorycalData(item.id);
 
   const color = item.price_change >= 0 ? "--chart-green-1" : "--chart-red-1";
@@ -27,7 +37,7 @@ export function HistoryChart({ item }: { item: HistoryChartProps }) {
   return (
     <ChartContainer
       config={chartConfig(color, item.id)}
-      className="w-1/2 h-16 mt-4"
+      className={`${className} mt-4`}
     >
       <AreaChart
         accessibilityLayer
@@ -37,7 +47,7 @@ export function HistoryChart({ item }: { item: HistoryChartProps }) {
           right: 12,
         }}
       >
-        <CartesianGrid vertical={false} horizontal={false} />
+        <CartesianGrid vertical={vertical} horizontal={horizontal} />
 
         <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
 

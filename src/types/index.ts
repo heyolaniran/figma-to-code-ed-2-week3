@@ -41,3 +41,26 @@ export type PriceProps = {
 
   data : number
 }
+
+export type CoinResumeProps = {
+  id: string , 
+  symbol : string, 
+  name: string
+  description: { en: string } 
+  image : { small : string } 
+  current_price : { usd : string } 
+  market_data : {
+    market_cap : {usd : number},
+    circulating_supply: number, 
+    high_24h : {
+      usd:  number
+    }, 
+    low_24h: {
+      usd :  number
+    }, 
+    price_change_24h : number
+  }
+  
+  market_cap_rank: number
+ 
+}

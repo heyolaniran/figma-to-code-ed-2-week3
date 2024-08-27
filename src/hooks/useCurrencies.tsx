@@ -12,7 +12,7 @@ export function useCurrencies(category: string = "", page: number = 1) {
   const BASE_URL =
     process.env.NEXT_PUBLIC_COINGECKO_API_BASE_URL +
     `/coins/markets/?vs_currency=USD&per_page=25&page=${page}`;
-  const URL = category === "" ? BASE_URL : BASE_URL + `?category=${category}`;
+  const URL = category === "" ? BASE_URL : BASE_URL + `&category=${category}`;
 
   useEffect(() => {
     axios
