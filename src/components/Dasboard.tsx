@@ -20,7 +20,7 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <div className=" mt-4 flex justify-between sticky top-0 gap-2 items-center">
+          <div className="  mt-14 flex justify-between top-0 gap-2 items-center">
             <button className="rounded-lg px-2 font-bold text-md w-full py-1 bg-blue-400/10 text-blue-400 flex justify-center items-center gap-1">
               <MoveUp className="w-4 h-4" /> Deposit
             </button>
