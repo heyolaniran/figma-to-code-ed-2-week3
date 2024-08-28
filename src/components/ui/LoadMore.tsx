@@ -16,8 +16,7 @@ export default function LoadMore() {
 
   useEffect(() => {
     if (inView) {
-      const ENDPOINT =
-        process.env.NEXT_PUBLIC_NEWS_API + `&pageSize=24&page=${page}`;
+      const ENDPOINT = process.env.NEXT_PUBLIC_NEWS_API + `&pageSize=24&page=${page}`;
       axios
         .get(ENDPOINT)
         .then((response) => setData([...data, ...response.data.articles]));
