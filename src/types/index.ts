@@ -64,3 +64,17 @@ export type CoinResumeProps = {
   market_cap_rank: number
  
 }
+
+
+export type ArticleProps =  {
+
+  author: string
+  title: string
+  description: string
+  url: string
+  urlToImage: string
+  publishedAt: string
+
+}
+
+export type JSXElement = JSX.Element ; 
