@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { Menu } from "lucide-react";
 import { useState } from "react";
 import Image from "next/image";
-import { navLinks } from "@/app/constants";
+import { navLinks } from "@/constants";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 export default function HeaderMobile() {

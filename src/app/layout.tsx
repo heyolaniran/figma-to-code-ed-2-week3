@@ -4,6 +4,7 @@ import "./globals.css";
 import SideBar from "@/components/ui/SideBar";
 import TopNavBar from "@/components/ui/TopNavBar";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import AppWrapper from "./_components/AppWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,18 +27,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="flex">
-            <div className="lg:block hidden min-h-screen sticky">
-              <SideBar />
-            </div>
-
-            <main className="flex-1">
-              <TopNavBar />
-              <div className="flex flex-col  sm:border-r sm:border-slate-50 min-h-screen">
-                {children}
-              </div>
-            </main>
-          </div>
+          {children}
         </ThemeProvider>
       </body>
     </html>

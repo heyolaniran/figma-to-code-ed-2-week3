@@ -1,9 +1,8 @@
 "use client";
 import cn from "@/utils/cn";
-import { useSelectedLayoutSegment } from "next/navigation";
-import Image from "next/image";
+import { usePathname, useSelectedLayoutSegment } from "next/navigation";
 import { useTheme } from "next-themes";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, Wallet2 } from "lucide-react";
 import HeaderMobile from "./HeaderMobile";
 import useScroll from "@/hooks/useScroll";
 
@@ -16,7 +15,7 @@ import {
 } from "@/components/ui/select";
 
 export default function TopNavBar() {
-  const segment = useSelectedLayoutSegment() ?? "Dashboard";
+  const segment = useSelectedLayoutSegment() ?? usePathname().substring(1);
 
   const { theme, setTheme } = useTheme();
   const light = theme == "light";
@@ -34,13 +33,13 @@ export default function TopNavBar() {
         <div className="flex gap-3 items-center">
           <HeaderMobile />
           <div className="block">
-            <h1 className="text-md font-bold">{segment}</h1>
+            <h1 className="text-md font-bold capitalize">{segment}</h1>
             <span className="text-sm">Welcome Back , John Doe !</span>
           </div>
 
           <div className="md:block hidden">
             <button className="px-4 py-1 text-white bg-blue-600 rounded-lg flex gap-2">
-              <Image src={"/icons/wallet.svg"} width={20} height={20} alt="" />{" "}
+              <Wallet2 className="w-5 h-5" />
               Connect Wallet
             </button>
           </div>
